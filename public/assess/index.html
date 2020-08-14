@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+ 	<meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0 minimum-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#ffffff">
+    <title>Editor</title>
+    <!-- TODO -->
+    <!-- <script defer src="/__path-to___/firebase-app.js"></script>
+    <script defer src="/__path-to___/firebase-auth.js"></script>
+    <script defer src="/__path-to___/firebase-database.js"></script>
+    <script defer src="/__path-to___/init.js"></script> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <!---<link rel="manifest" href="/site.webmanifest">-->
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="lib/fontello/css/fontello.css" />
+    <link rel="stylesheet" href="twbs3.3.4.1.min.css" />
+  </head>
+<body>
+<div class="container-fluid">
+    <div id="mainMenu" class="fixedBox">
+        <div id="leUser">
+            <img id="usrPhoto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" width="30" height="30" />
+        </div id="leRecords">
+        <div id="leRecords" class="btn-primary icon-doc-text nodisplay"><span>Records</span></div>
+        <div id="leStudents" class="btn-primary icon-user-circle nodisplay"><span>Students</span></div>
+        <div id="leRubrics" class="btn-primary icon-th nodisplay"><span>Rubrics</span></div>
+        <div id="leSnippets" class="btn-primary icon-scissors nodisplay"><span>Snippets</span></div>
+        <div id="leGRADER" class="btn-primary icon-beaker nodisplay"><span>GRADE</span></div>
+        <div id="leSignout" class="btn-primary icon-off"><span>Sign out</span></div>
+    </div>
+    <div class="fixedBox2">
+        <div id="studentActions" class="nodisplay">
+            <div id="ac_st_add" class="btn btn-sm btn-default">Add new</div>
+            <div id="ac_st_save" class="btn btn-sm btn-default icon-database">Save</div>
+            <div id="ac_st_exit" class="btn btn-sm btn-default">Revert</div>
+            <div id="ac_st_reset" class="btn btn-sm btn-default icon-arrows-ccw">Empty</div>
+        </div>
+            <div id="snippetActions" class="nodisplay">
+            <div id="ac_sn_add" class="btn btn-sm btn-default">Add new</div>
+            <div id="ac_sn_save" class="btn btn-sm btn-default icon-database">Save</div>
+            <div id="ac_sn_dis" class="btn btn-sm btn-default">Revert</div>
+        </div>
+        <div id="rubricActions" class="nodisplay">
+            <div id="ac_ru_commit" class="btn btn-sm btn-default icon-database">Save</div>
+            <div id="ac_ru_dis" class="btn btn-sm btn-default">Exit</div>
+            <div id="ac_ru_del" class="btn btn-sm btn-default" style="display: none;">Delete</div>
+        </div>
+        <div id="editRecordActions" class="nodisplay">
+            <div id="ac_re_update" class="btn btn-sm btn-default icon-database">Save</div>
+            <div id="ac_re_exit" class="btn btn-sm btn-default">Exit</div>
+        </div>
+        <div id="gradeActions" class="nodisplay">
+            <div id="ac_gr_save" class="btn btn-sm btn-default icon-database">Save only</div>
+            <div id="ac_gr_dl" class="btn btn-sm btn-default icon-download">Save &amp; dwnld</div>
+        </div>
+    </div>
+    <div id="welcomeMsg" class="container-fluid"></div>
+<!--  -->
+    <div id="contentsBox" class="contentBox container-fluid nodisplay">
+        <div class="row">
+    <div class="col-lg-12">
+    <div id="titleHeader"></div>
+<!-- editor -->
+    <div id="editStudents" class="container-fluid nodisplay">
+        <div class="row">
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-8 col-md-10">
+                <div id="" class="row">
+                    <div class="col-lg-12">
+                        <div class="headerOnly whiteBlue text-center" style="margin-bottom: 10px;">
+                            <form id="nputStudents">
+                                <input type="file" id="studentfile" name="filedped" style="display:none;" />
+                                <label id="labelstudentfile" for="studentfile" class="btn btn-xs btn-default" style="margin:5px 0;width: 120px;">Add via .csv</label>
+                            </form>
+                            <div class="small text-center">
+                                <em>CSV requires 3 headers: "class", "id" and "name". &nbsp;CSV must be UTF-8 encoded.</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-8 col-md-10">
+                <table id="editStudents_table" class="table table-condensed table-bordered table-striped">
+                    <thead class="text-center tableHeader">
+                        <tr>
+                            <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">class</th>
+                            <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">id</th>
+                            <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4">name</th>
+                            <th class="col-width30"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="editStudents_body" class=""></tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    <div id="editSnippets" class="container-fluid nodisplay">
+        <div class="row">
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-8 col-md-10">
+                <div class="row" style="margin-top: 15px; margin-bottom: 10px;">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-1"></div>
+            <div id="snippetsContainer" class="col-lg-8 col-md-10">
+                <table id="snptsTable" class="table table-condensed table-bordered">
+                    <thead class="text-center tableHeader">
+                        <tr>
+                            <th class="col-width90">Rubric</th>
+                            <th class="col-width90">Section</th>
+                            <th>Content</th>
+                            <th class="col-width30"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="snptsTbd" class="">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="editRubric" class="container-fluid nodisplay">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="headerOnly whiteBlue text-center" style="margin-top: 15px; margin-bottom: 10px;">
+                            <div id="ruNameCurrent" class="nodisplay">
+                                <strong>Rubric:
+                                    <input id="ruNameNewtxt" value="" class="inputContext" />
+                                    <input type="checkbox" id="shareThisRubric" />
+                                    <label for="shareThisRubric" style="font-weight: 400;"> Share this rubric</label>
+                                </strong>
+                                <div class="small text-center">
+                                    <em>Changes only apply once the "Save" button has been hit.</em>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 25px;">
+                                <fieldset id="ruLoadChkBoxes" class="md-radio md-radio-inline" style="text-align: left;"></fieldset>
+                            </div>
+                            <div id="ruLoadSelected" class="btn btn-sm btn-default nodisplay">Load selected</div>
+                            <div id="ruCreateNew" class="btn btn-sm btn-default">Create new</div>
+                            <div id="ruNewRubricName" class="nodisplay" style="margin-top:15px;">New rubric name:
+                                <input id="ruEnterNewName" />
+                                <button id="ruNewSaveBtn" class="btn btn-sm btn-default">Save</button>
+                                <button id="ruNewExitBtn" class="btn btn-sm btn-default">Discard</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="rubrik" class="spreadsheet"></div>
+                <div id="sectionInputWrapper" class="nodisplay">New section:
+                    <input id="newRubrikSection" />
+                    <button id="newRubrikSectionBtn" class="btn btn-sm btn-default">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="editFinalRecord" class="container-fluid nodisplay">
+        <div class="row">
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-8 col-md-10">
+                <div id="" class="row" style="margin-top:15px;">
+                    <div class="col-lg-12">
+                        <div id="recordsHeader" class="headerOnly whiteBlue text-center" style="margin-bottom: 10px;">Loading records...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mapContainer" class="row nodisplay">
+            <div id="recordsMap" class="col-lg-12"></div>
+        </div>
+        <div id="candidateInfo" class="row nodisplay">
+            <div class="col-lg-12">
+                <div class="headerOnly whiteBlue">
+                    <div class=""><strong>Class:</strong>&nbsp;<input id="thisClass" style="width: 100px" />&nbsp;<strong> Student:</strong>&nbsp;<span id="thisStudent"></span>&nbsp;&nbsp;<span id="showmap" class="btn btn-sm icon-switch changer">Change</span></div>
+                </div>
+            </div>
+        </div>
+        <div id="recordsContainer"></div>
+    </div>
+<!-- grader -->
+    <div id="components" class="nodisplay">
+        <div class="row">
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-8 col-md-10">
+                <div class="headerOnly whiteBlue text-center" style="margin:25px 0 5px 5px;"><strong>Speaking Assessments</strong></div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-lg-12 whiteBlue small">
+                        <div style="margin-left: 5px;">
+                            <span style="font-weight: 700;">Set the context:</span>
+                            <div id="ctxChkBoxes">
+                                <fieldset class="md-radio md-radio-inline">
+                                    <input id="ctxFe" name="scale" type="radio" value="Final Exam" />
+                                    <label for="ctxFe">Final Exam</label>
+                                    <input id="ctxMte" name="scale" type="radio" value="Mid-term Exam" />
+                                    <label for="ctxMte">Mid-term Exam</label>
+                                    <input id="ctxHw" name="scale" type="radio" value="Homework" />
+                                    <label for="ctxHw">Homework</label>
+                                    <input id="ctxAssgn" name="scale" type="radio" value="Assignment" checked />
+                                    <label for="ctxAssgn">Assignment</label>
+                                    <div style="display: inline-block;">
+                                        <input id="ctxOther" name="scale" type="radio" value="" />
+                                        <label for="ctxOther" style="font-weight: 400;">Other:</label>
+                                        <input id="ctxContent" class="nodisplay" name="scale" type="text" placeholder="specify" />
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 whiteBlue small">
+                        <div style="margin-left: 5px;">
+                            <span style="font-weight: 700;">Select the relevant rubric:</span>
+                            <div id="gaChkBoxes">
+                                <span id="gaLoading">loading...</span>
+                                <fieldset id="gaLoadChkBoxes" class="md-radio md-radio-inline"></fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 whiteBlue small">
+                        <div style="margin-left: 5px;">
+                            <div id="gaSctnBoxes" class="nodisplay">
+                                <div id="gaSctnTextHelper" style="font-weight: 700; margin: 5px 0;">...and the sections to use (in order):</div>
+                                <div id="gaCbContainer"></div>
+                                <div class="whiteBlue text-center" style="margin:25px 0 25px 5px">
+                                    <span id="catsSet" class="btn btn-sm btn-success">Let's get started</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mapgcontainer" class="container-fluid nodisplay">
+    <div class="row">
+        <div id="mgap" class="col-lg-12"></div>
+    </div>
+    </div>
+    <div id ="viewgSnppts" class="container-fluid nodisplay">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="" class="row" style="margin-top:15px;">
+                    <div class="col-lg-12">
+                        <div class="headerOnly whiteBlue text-center" style="margin-bottom: 10px;"><strong>Snippets</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-8 col-md-10">
+                <table id="viewgSnppts_table" class="table table-condensed table-bordered">
+                    <thead class="text-center tableHeader">
+                        <tr>
+                            <th class="col-width65"></th>
+                            <th class="col-width90">Section</th>
+                            <th>Content</th>
+                            <th class="col-width30"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="snpptgContainer" class=""></tbody>
+                </table>
+                <div class="row" style="margin-top: 15px">
+                    <div class="col-lg-12 text-center">
+                        <div id="snpptgSave" class="btn btn-sm btn-success icon-floppy">Paste Selected</div>
+                        <div id="snpptgExit" class="btn btn-sm btn-default">Cancel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="userInput" class="container-fluid nodisplay">
+        <div id="studentgSlct" class="row">
+            <div class="col-lg-12">
+                <div id="chooseStudent" class="">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="headerOnly whiteBlue">
+                                <div id="showgMap" class="btn btn-sm icon-map-o"> Map</div>
+                                <div id="select-styleA">
+                                    <select id="chooseClass"></select>
+                                </div>
+                                <div id="select-styleB" class="invisible">
+                                    <select id="chooseId"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="studentgInfo" class="row nodisplay">
+            <div class="col-lg-12">
+                <div class="headerOnly whiteBlue">
+                    <div class=""><strong>Class:</strong>&nbsp;<span id="thisgClass"></span>&nbsp;<strong> Student:</strong>&nbsp;<span id="thisgStudent"></span>&nbsp;&nbsp;<span id="resetStudent" class="btn btn-sm icon-switch">Change</span></div>
+                </div>
+            </div>
+        </div>
+        <div id="datgEntry"></div>
+        <div>
+            <div class="row">
+                <div class="col-lg-12 fbkWrapper">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-6 fbkSection">
+                            <div class="feedbackLabel">General feedback <span id="textApaste" class="icon-paste"></span></div>
+                            <div id="gFbWritten" class="commentBtnA" contenteditable="true"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 fbkSection">
+                            <div id="viewRubricDuringGrading">
+                                <div class="feedbackLabel text-center">Rubric</div>
+                                <div class="text-center">
+                                    <div class="squaredFour" style="display: inline-block;">
+                                        <input type="checkbox" id="gRbChkd" />
+                                        <label for="gRbChkd"></label>
+                                    </div>
+                                    <span class="small">Include</span>
+                                    <div id="gaRbAttchd" class="small btn btn-sm btn-default rubricViewer" style="margin-left: 10px;">View rubric</div>
+                                </div>
+                            </div>
+                            <div id="viewNoRubricOverallScore" class="nodisplay">
+                                <div class="feedbackLabel text-center">Score</div>
+                                <div class="text-center">
+                                    <input type="number" id="gOvrllScr" class="genTotalScore" />
+                                    <span> / </span>
+                                    <input type="number" id="gOvrllMax" class="genTotalScore" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center" style="margin: 20px auto 40px auto;">
+                    <div id="resetGrader" class="btn btn-sm btn-default icon-logout">Exit / reset</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="gaFullRb" class="container-fluid nodisplay">
+        <div class="row text-center">
+            <div id="closeGaRbAttchd" class="btn btn-sm btn-default" style="margin: 20px 0;">Back to grading</div>
+        </div>
+        <div class="row">
+            <div id="gaFullRbContainer" class="col-lg-12 text-center small"></div>
+        </div>
+    </div>
+    <canvas id="txtCanvas" width="300" height="60" style="display: none;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script src="lib/msc-script.min.js"></script>
+<script src="lib/pdfmake.min.js"></script>
+<script src="lib/vfs_fonts.js"></script>
+<script src="lib/papaparse.min.js"></script>
+<script src="lib/FileSaver.min.js"></script>
+<script src="lib/jszip.min.js"></script>
+<script src="appEditor5.2.min.js"></script>
+</body>
+</html>

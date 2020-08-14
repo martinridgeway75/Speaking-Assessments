@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+ 	<meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0 minimum-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#ffffff">
+    <title>Admin</title>
+    <!-- TODO -->
+    <!-- <script defer src="/__path-to___/firebase-app.js"></script>
+    <script defer src="/__path-to___/firebase-auth.js"></script>
+    <script defer src="/__path-to___/firebase-database.js"></script>
+    <script defer src="/__path-to___/init.js"></script> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <!---<link rel="manifest" href="/site.webmanifest">-->
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="lib/fontello/css/fontello.css" />
+    <link rel="stylesheet" href="twbs3.3.4.1.min.css" />
+    <style>
+        /* A css hack here, because this page is not integrated into the app page (there would have been no <p> tags)*/
+        @media screen and (max-width: 767px) { div.fixedBox > div > p {display: inline-block;} }
+        .btn.btn-sm.btn-fixwidth { min-width: 240px; max-width: 240px; text-overflow: clip; white-space: pre-line; margin: 5px 5px;}
+        .accessbtn {background-color: #5cb85c; border-color: #4cae4c; padding: 0 8px; display: inline-block; margin-right: 5px;}
+        .noAccessbtn {background-color: #fff; border: 1px solid #ccc; padding: 0 8px; display: inline-block; margin-right: 5px;margin-left: 10px;}
+    </style>
+  </head>
+<body>
+    <div class="container-fluid">
+        <div id="mainMenu" class="fixedBox">
+            <div>
+                <img id="usrPhoto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" width="30" height="30" />
+            </div>
+            <div id="leEDITOR" class="btn-primary">
+                <p class="icon-doc-text"></p>
+                <p class="icon-user-circle"></p>
+                <p class="icon-th"></p>
+                <p class="icon-scissors"></p>
+                <p class="icon-beaker"></p>
+                <span>App</span>
+            </div>
+            <div id="leSignout" class="btn-primary icon-off"><span>Sign out</span></div>
+        </div>
+        <div class="fixedBox2">
+            <div id="optActions" class="nodisplay" style="margin-top: 60px;">
+                <p style="text-align: center; color: #fff;">USERS</p>
+                <div id="updateUsers" class="btn btn-sm btn-default icon-database">Save</div>
+                <div id="deleteUsers" class="btn btn-sm btn-default">Clear pending</div>
+                <div id="revertUsers" class="btn btn-sm btn-default icon-arrows-ccw">Revert</div>
+            </div>
+            <div id="rubricActions" class="nodisplay" style="margin-top: 120px;">
+                <p style="text-align: center; color: #fff;">SHARED RUBRICS</p>
+                <div id="ac_ru_commit" class="btn btn-sm btn-default icon-database">Update</div>
+                <div id="ac_ru_dis" class="btn btn-sm btn-default">Exit</div>
+                <div id="ac_ru_del" class="btn btn-sm btn-default" style="display: none;">Delete</div>
+            </div>
+        </div>
+        <div id="contentsBox" class="contentBox container-fluid">
+            <div class="row">
+    <div class="col-lg-12">
+        <div id="titleHeader" style="margin-bottom: 10px;">Manage users</div>
+        <div style="margin-bottom: 20px; text-align: center;"><span class="accessbtn">&nbsp;</span> Access granted <span class="noAccessbtn">&nbsp;</span> Access pending</div>
+        <div class="row">
+            <div class="col-lg-12" id="manageOpts" class="nodisplay"></div>
+        </div>
+        <div style="margin-top: 20px; font-size: 2em; text-align: center;">Manage shared rubrics</div>
+        <div id="editRubric" class="container-fluid nodisplay">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="headerOnly whiteBlue text-center" style="margin-top: 15px; margin-bottom: 10px;">
+                                <div id="ruNameCurrent" class="nodisplay">
+                                    <strong>Rubric:
+                                        <input id="ruNameNewtxt" value="" class="inputContext" />
+                                    </strong>
+                                </div>
+                                <div style="margin-bottom: 25px;">
+                                    <fieldset id="ruLoadChkBoxes" class="md-radio md-radio-inline" style="text-align: left;"></fieldset>
+                                </div>
+                                <div id="ruLoadSelected" class="btn btn-sm btn-default nodisplay">Load selected</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="rubrik" class="spreadsheet"></div>
+                    <div id="sectionInputWrapper" class="nodisplay">New section:
+                        <input id="newRubrikSection" />
+                        <button id="newRubrikSectionBtn" class="btn btn-sm btn-default">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+<script src="lib/msc-script.min.js"></script>
+<script src="admin.min.js"></script>
+</body>
+</html>

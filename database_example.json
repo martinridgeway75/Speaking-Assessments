@@ -1,0 +1,77 @@
+{
+  "adminList" : {
+    "uniqueUserId" : true
+  },
+  "assessments" : {
+    "uniqueUserId" : {
+      "records" : {
+        "uniqueIdOfRecord" : {
+          "comments" : [ "" ],
+          "context" : "Assignment",
+          "feedback" : {
+            "rubric" : [ {
+              "sectionDef" : [ {
+                "criteriaDef" : [ {
+                  "descriptor" : "descriptionOfEquallyWeightedCriteriaWithinASection",
+                  "score" : "num"
+                } ],
+                "criteriaName" : "nameOfEquallyWeightedCriteriaWithinASection"
+              } ],
+              "sectionName" : "nameOfSection"
+            } ],
+            "rubricChkd" : false,
+            "written" : "aCommentSpecificToThisSection"
+          },
+          "scores" : [ [ [ "nameOfEquallyWeightedCriteriaWithinASection", "scoreNum", "maxNum", "descriptionOfEquallyWeightedCriteriaWithinASection" ] ] ],
+          "sectionNames" : [ "nameOfSection" ],
+          "studentData" : {
+            "stCls" : "numIdOfClass",
+            "stId" : "unqiueStudentId",
+            "stNme" : "StudentName"
+          },
+          "timeStamp" : 1000000000001
+        }
+      },
+      "recordsIndex" : {
+        "uniqueRecordId" : {
+          "context" : "Assessment",
+          "studentData" : {
+            "stCls" : "numIdOfClass",
+            "stId" : "unqiueStudentId",
+            "stNme" : "StudentName"
+          },
+          "timeStamp" : 1000000000001
+        }
+      },
+      "savedRubrics" : {
+        "uniqueRubricId" : {
+          "rubricDef" : [ {
+            "sectionDef" : [ {
+              "criteriaDef" : [ {
+                "descriptor" : "descriptionOfEquallyWeightedCriteriaWithinASection",
+                "score" : "num"
+              } ],
+              "criteriaName" : "nameOfEquallyWeightedCriteriaWithinASection"
+            } ],
+            "sectionName" : "nameOfSection"
+          } ],
+          "rubricName" : "nameOfRubric"
+        }
+      },
+      "savedRubricsIndex" : {
+        "uniqueRubricId" : {
+          "rubricName" : "nameOfRubric",
+          "sectionNames" : [ "nameOfSection" ]
+        }
+      },
+      "studentData" : [ {
+        "stCls" : "numIdOfClass",
+        "stId" : "unqiueStudentId",
+        "stNme" : "StudentName"
+      } ]
+    }
+  },
+  "spkTchrList" : {
+    "uniqueUserId" : "Fullname"
+  }
+}

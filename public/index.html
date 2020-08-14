@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Speaking Assessments Sign-in</title>
+    <!-- TODO -->
+    <!-- <script defer src="/__path-to___/firebase-app.js"></script>
+    <script defer src="/__path-to___/firebase-auth.js"></script>
+    <script defer src="/__path-to___/firebase/init.js"></script>
+    <script src="/__path-to___/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="/__path-to___/firebaseui.css" /> -->
+      <style>/*fix loading state of card*/.mdl-shadow--2dp { box-shadow: none; } .firebaseui-info-bar { margin-top: 20px; } div.mdl-progress::after { display: block; color: #2c3e50; content: "Authenticating"; margin: 20px auto; text-align: center; } .mdl-progress { height: 5px; }@media screen and (min-width:768px){div.contentBox{margin-left:260px}div.fixedBox{position:fixed;left:0;top:0;bottom:0;width:100px;background-color:#337ab7;display:block;z-index:1030}div.fixedBox2{position:fixed;left:100px;top:0;bottom:0;width:160px;background-color:#286090;display:block;z-index:1030}}@media screen and (max-width:767px){div.fixedBox{position:fixed;left:0;top:0;height:60px;right:0;background-color:#337ab7;display:block;z-index:1030}div.fixedBox2{position:fixed;left:0;top:60px;right:0;height:60px;background-color:#286090;display:block;z-index:1030}div.contentBox{margin-left:0;margin-top:140px}}div.contentBox{padding-bottom:100px}
+     </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div id="mainMenu" class="fixedBox"></div>
+        <div class="fixedBox2"></div>
+        <div id="contentsBox" class="contentBox container-fluid">
+            <div class="row" style="margin-top: 80px;">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-2 text-center"></div>
+                <div id="auth-holder" class="col-lg-6 col-md-6 col-sm-6 col-xs-8 text-center">
+                    <h2 style="color: #2c3e50; text-align: center;">Speaking assessments</h2>
+                    <div id="firebaseui-auth-container"></div>
+                    <div style="text-align: center; margin-top: 60px;">
+                        <!-- TODO -->
+                        <!-- <a href="https://accounts.google.com/logout" target="_top" rel="noreferrer noopener" style="text-decoration: none;">Sign out of all accounts</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TODO -->
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+
+            var ui,
+            uiConfig;
+
+            ui = new firebaseui.auth.AuthUI(firebase.auth());
+            uiConfig = {
+              callbacks: {
+                  signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                      return true;
+                  }
+              },
+              signInFlow: "redirect",
+              signInSuccessUrl: '/assess/',
+              signInOptions: [
+                  firebase.auth.GoogleAuthProvider.PROVIDER_ID
+              ]
+              //immediateFederatedRedirect: true
+          };
+          ui.start('#firebaseui-auth-container', uiConfig);
+      });
+    </script> -->
+  </body>
+</html>
