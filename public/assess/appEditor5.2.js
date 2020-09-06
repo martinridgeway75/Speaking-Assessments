@@ -1,5 +1,5 @@
 /*(c) 2019 Martin Ridgeway <martin@ridgeway.io> MIT license*/
-/*A very special thanks to Anna Otterstad and Lee Gaskell - who generously gave their time to help test and develop the app*/
+/*A very special thanks to Anna Otterstad and Lee Gaskell - who generously gave their time to help test and improve the app*/
 /*global window*/
 /*global document*/
 /*global pdfMake*/
@@ -3285,8 +3285,6 @@ function handleStudentsCSV(evt) { //csv upload...
         complete: function (results) {
             document.getElementById('nputStudents').reset();
 
-            if (!results.data.length) { return; }
-
             props = Object.keys(results.data[0]);
             len = props.length;
             reqProps = ["class", "id", "name"];
@@ -3294,7 +3292,7 @@ function handleStudentsCSV(evt) { //csv upload...
 
             for (i = 0; i < 3; i++) { //reqProps.length === 3
                 for (ii = 0; ii < len; ii++) {
-                    if (props[i].toLocaleLowerCase === reqProps[i]) {
+                    if (props[i].toLowerCase() === reqProps[i]) {
                         foundProps.push("" + reqProps[i]);
                         break;
                     }
@@ -3310,7 +3308,7 @@ function handleStudentsCSV(evt) { //csv upload...
 }
 
 function parseStudentsCSV(data, props) { //prop order MUST be: "class", "id", "name"
-    var len = results.data.length;
+    var len = data.length;
     var i;
 
     appEditor.csvStudentData = [];
